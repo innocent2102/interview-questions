@@ -24,8 +24,9 @@ export class JsComponent implements OnInit {
     });
   }
 
-  deleteQuestion() {
-
+  deleteQuestion(event, question) {
+    console.log('clicked');
+    this.jsService.deleteQuestion(question);
   }
 
 }

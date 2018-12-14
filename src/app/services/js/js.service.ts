@@ -10,8 +10,9 @@ import { map } from 'rxjs/operators';
 })
 export class JsService {
 
-  private questionCollection: AngularFirestoreCollection<Question>;
+  questionCollection: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
+  questionsDoc: AngularFirestoreDocument<Question>;
 
   constructor(public afs: AngularFirestore) {
     this.questionCollection = this.afs.collection<Question>('js');
@@ -33,8 +34,9 @@ export class JsService {
     this.questionCollection.add(question);
   }
 
-  remmoveQuestion(question: Question) {
-    this.questionCollection.remove(question);
+  deleteQuestion(question: Question) {
+    this.questionsDoc = this.afs.doc(`js/${question.id}`);
+    this.questionsDoc.delete();
   }
 
 }

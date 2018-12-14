@@ -2,7 +2,13 @@
 
 <div *ngIf="questions?.length > 0; else noItems">
   <ul class="collection" *ngFor="let question of questions">
-    <li (dblclick)="deleteQuestion()" class="collection-item">{{question.title}}</li>
+    <li class="collection-item flex justify-content-space-between">
+      <strong>{{question.title}}</strong>
+      <div>
+        <i (click)="editQuestion($event, question)" class="material-icons edit-icon">edit</i>
+        <i (click)="deleteQuestion($event, question)" class="material-icons delete-icon">delete</i>
+      </div>
+    </li>
     <li class="collection-item">{{question.answer}}</li>
   </ul>
 </div>
