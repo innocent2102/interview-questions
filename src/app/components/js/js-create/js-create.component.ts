@@ -12,7 +12,8 @@ export class JsCreateComponent implements OnInit {
   questions: Question[];
   question: Question = {
     title: '',
-    answer: ''
+    answer: '',
+    state: 0
   };
 
   constructor(private jsService: JsService) { }

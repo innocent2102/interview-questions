@@ -10,6 +10,8 @@ import { Question } from '../../interfaces/question';
 export class JsComponent implements OnInit {
 
   questions: Question[];
+  questionToEdit: Question;
+  editState = false;
 
   constructor(private jsService: JsService) { }
 
@@ -20,13 +22,29 @@ export class JsComponent implements OnInit {
   getQuestions() {
     this.jsService.getQuestions().subscribe((res: Question[]) => {
       this.questions = res;
-      console.log(res);
     });
   }
 
   deleteQuestion(event, question) {
-    console.log('clicked');
     this.jsService.deleteQuestion(question);
+  }
+
+  editQuestion(event, question) {
+    this.editState = true;
+    this.questionToEdit = question;
+    question.state = 1;
+  }
+
+  cancelEdit(question: Question) {
+    question.state = 0;
+    this.editState = false;
+    this.getQuestions();
+  }
+
+  updateQuestion(question: Question) {
+    question.state = 0;
+    this.jsService.updateQuestion(question);
+    this.editState = false;
   }
 
 }

@@ -1,15 +1,39 @@
-<a routerLink="/add" class="btn btn-block">Add</a>
+<!--<a routerLink="/add" class="btn btn-block">Add</a>-->
+<app-js-create *ngIf="!editState"></app-js-create>
 
 <div *ngIf="questions?.length > 0; else noItems">
+
   <ul class="collection" *ngFor="let question of questions">
-    <li class="collection-item flex justify-content-space-between">
-      <strong>{{question.title}}</strong>
-      <div>
-        <i (click)="editQuestion($event, question)" class="material-icons edit-icon">edit</i>
-        <i (click)="deleteQuestion($event, question)" class="material-icons delete-icon">delete</i>
+    <ng-container *ngIf="question.state === 0">
+      <li class="collection-item flex justify-content-space-between">
+        <strong>{{question.title}}</strong>
+        <div *ngIf="!editState">
+          <i (click)="editQuestion($event, question)" class="material-icons edit-icon">edit</i>
+          <i (click)="deleteQuestion($event, question)" class="material-icons delete-icon">delete</i>
+        </div>
+      </li>
+      <li class="collection-item">{{question.answer}}</li>
+    </ng-container>
+
+    <div *ngIf="question.state === 1 && questionToEdit.id === question.id">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Edytuj pytanie</span>
+          <form>
+            <div class="row">
+              <div class="input-field">
+                <input type="text" placeholder="Dodaj tytuł" [(ngModel)]="question.title" name="title">
+              </div>
+              <div class="input-field">
+                <textarea placeholder="Dodaj odpowiedź" [(ngModel)]="question.answer" name="answer" id="textarea1" class="materialize-textarea"></textarea>
+              </div>
+              <input (click)="updateQuestion(question)" type="btn" value="Zapisz" class="btn blue">
+              <input (click)="cancelEdit(question)" type="btn" value="Anuluj" class="btn grey">
+            </div>
+          </form>
+        </div>
       </div>
-    </li>
-    <li class="collection-item">{{question.answer}}</li>
+    </div>
   </ul>
 </div>
 

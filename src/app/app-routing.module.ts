@@ -15,7 +15,6 @@ const routes: Routes = [
   {path: 'html', component: HtmlComponent},
   {path: 'css', component: CssComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'add', component: JsCreateComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
