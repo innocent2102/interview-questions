@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AngularComponent } from './angular/angular.component';
-import { JsComponent } from './js/js.component';
-import { HtmlComponent } from './html/html.component';
-import { TypescriptComponent } from './typescript/typescript.component';
-import { CssComponent } from './css/css.component';
-import { HomeComponent } from './home/home.component';
+import { AngularComponent } from './components/angular/angular.component';
+import { JsComponent } from './components/js/js.component';
+import { HtmlComponent } from './components/html/html.component';
+import { TypescriptComponent } from './components/typescript/typescript.component';
+import { CssComponent } from './components/css/css.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path: 'angular', component: AngularComponent},
