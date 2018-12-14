@@ -39,4 +39,9 @@ export class JsService {
     this.questionsDoc.delete();
   }
 
+  updateQuestion(question: Question) {
+    this.questionsDoc = this.afs.doc(`js/${question.id}`);
+    this.questionsDoc.update(question);
+  }
+
 }
