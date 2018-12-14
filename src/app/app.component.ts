@@ -17,8 +17,9 @@ export class AppComponent {
   constructor(db: AngularFireDatabase) {
     db.list('/js')
       .valueChanges()
-      .subscribe(item => {
-        console.log(item);
+      .subscribe(res => {
+        console.log(res);
+        this.js = res;
       });
 
   }
