@@ -1,9 +1,8 @@
-<p>
-  js works!
-</p>
+<a routerLink="/add" class="btn btn-block">Add</a>
 
 <div *ngIf="questions?.length > 0; else noItems">
   <ul class="collection" *ngFor="let question of questions">
+    <li class="collection-item">{{question.id}}</li>
     <li class="collection-item">{{question.title}}</li>
     <li class="collection-item">{{question.answer}}</li>
   </ul>

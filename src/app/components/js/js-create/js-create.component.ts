@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JsService } from '../../../services/js/js.service';
+import  { Question } from '../../../interfaces/question';
 
 @Component({
   selector: 'app-js-create',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JsCreateComponent implements OnInit {
 
-  constructor() { }
+  questions: Question[];
+  question: Question = {
+    title: '',
+    answer: ''
+  };
+
+  constructor(private jsService: JsService) { }
 
   ngOnInit() {
   }
