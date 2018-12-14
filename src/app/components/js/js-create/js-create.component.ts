@@ -9,12 +9,8 @@ import  { Question } from '../../../interfaces/question';
 })
 export class JsCreateComponent implements OnInit {
 
-  questions: Question[];
-  question: Question = {
-    title: '',
-    answer: '',
-    state: 0
-  };
+  question: Question = {title: '', answer: '', state: 0};
+  addWindowHidden = false;
 
   constructor(private jsService: JsService) { }
 
@@ -24,10 +20,19 @@ export class JsCreateComponent implements OnInit {
   onSubmit() {
     if (this.question.answer !== '' && this.question.title !== '') {
       this.jsService.addQuestion(this.question);
-      this.question.title = '';
-      this.question.answer = '';
+      this.resetQuestionValues();
     }
   }
+
+  resetQuestionValues() {
+    this.question.title = '';
+    this.question.answer = '';
+  }
+
+  toggleWindow() {
+    this.addWindowHidden = !this.addWindowHidden;
+  }
+
 }
 
 
