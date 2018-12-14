@@ -1,20 +1,21 @@
-<!--<a routerLink="/add" class="btn btn-block">Add</a>-->
+<!-- Add Question Component -->
 <app-js-create *ngIf="!editState"></app-js-create>
 
+<!-- Question List -->
 <div *ngIf="questions?.length > 0; else noItems">
-
   <ul class="collection" *ngFor="let question of questions">
     <ng-container *ngIf="question.state === 0">
       <li class="collection-item flex justify-content-space-between">
         <strong>{{question.title}}</strong>
         <div *ngIf="!editState">
           <i (click)="editQuestion($event, question)" class="material-icons edit-icon">edit</i>
-          <i (click)="deleteQuestion($event, question)" class="material-icons delete-icon">delete</i>
+          <i href="#modal1" (click)="currentQuestion(question)" class="material-icons delete-icon modal-trigger">delete</i>
         </div>
       </li>
       <li class="collection-item">{{question.answer}}</li>
     </ng-container>
 
+    <!-- Edit Question Form-->
     <div *ngIf="question.state === 1 && questionToEdit.id === question.id">
       <div class="card">
         <div class="card-content">
@@ -37,7 +38,20 @@
   </ul>
 </div>
 
+<!-- No elements -->
 <ng-template #noItems>
   <hr>
   <h5>Brak elementów do wyświetlenia</h5>
 </ng-template>
+
+
+<!-- Modal -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h6>Czy na pewno chcesz usunąć pytanie?</h6>
+  </div>
+  <div class="modal-footer">
+    <a (click)="deleteQuestion()"  class="modal-close waves-effect waves-green btn-flat blue">Tak</a>
+    <a class="modal-close waves-effect waves-green btn-flat grey">Nie</a>
+  </div>
+</div>

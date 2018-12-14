@@ -30,7 +30,6 @@ export class JsService {
   }
 
   addQuestion(question: Question) {
-    //this.questionCollection = this.afs.collection<Question>('js');
     this.questionCollection.add(question);
   }
 
