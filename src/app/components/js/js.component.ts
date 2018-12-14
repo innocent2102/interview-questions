@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JsService } from '../../services/js/js.service';
 import { Question } from '../../interfaces/question';
-import * as $ from 'jquery';
 declare var $: any;
 @Component({
   selector: 'app-js',
@@ -18,10 +17,14 @@ export class JsComponent implements OnInit {
   constructor(private jsService: JsService) { }
 
   ngOnInit() {
-    $(document).ready(function(){
+    this.modalOpenTrigger();
+    this.getQuestions();
+  }
+
+  modalOpenTrigger() {
+    $(document).ready(function() {
       $('.modal').modal();
     });
-    this.getQuestions();
   }
 
   getQuestions() {
@@ -30,7 +33,7 @@ export class JsComponent implements OnInit {
     });
   }
 
-  currentQuestion(question: Question) {
+  setCurrentQuestion(question: Question) {
     this.question = question;
   }
 
