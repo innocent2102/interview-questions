@@ -13,10 +13,11 @@ export class JsService {
   private questionCollection: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
 
-  constructor(public afs: AngularFirestore) { }
+  constructor(public afs: AngularFirestore) {
+    this.questionCollection = this.afs.collection<Question>('js');
+  }
 
   getQuestions() {
-    this.questionCollection = this.afs.collection<Question>('js');
     this.questions = this.questionCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Question;
@@ -25,6 +26,15 @@ export class JsService {
       }))
     );
     return this.questions;
+  }
+
+  addQuestion(question: Question) {
+    //this.questionCollection = this.afs.collection<Question>('js');
+    this.questionCollection.add(question);
+  }
+
+  remmoveQuestion(question: Question) {
+    this.questionCollection.remove(question);
   }
 
 }

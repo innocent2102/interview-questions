@@ -24,4 +24,8 @@ export class JsComponent implements OnInit {
     });
   }
 
+  deleteQuestion() {
+
+  }
+
 }
