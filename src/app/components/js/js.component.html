@@ -1,3 +1,15 @@
 <p>
   js works!
 </p>
+
+<div *ngIf="questions?.length > 0; else noItems">
+  <ul class="collection" *ngFor="let question of questions">
+    <li class="collection-item">{{question.title}}</li>
+    <li class="collection-item">{{question.answer}}</li>
+  </ul>
+</div>
+
+<ng-template #noItems>
+  <hr>
+  <h5>Brak elementów do wyświetlenia</h5>
+</ng-template>

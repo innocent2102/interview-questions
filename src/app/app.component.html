@@ -1,9 +1,16 @@
-<div class="flex nav-bar">
-  <a routerLink="/html">HTML</a>
-  <a routerLink="/css">CSS</a>
-  <a routerLink="/js">JS</a>
-  <a routerLink="/angular">ANGULAR</a>
-  <a routerLink="/typescript">TYPESCRIPT</a>
-</div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a routerLink="/html">HTML</a></li>
+       <li><a routerLink="/css">CSS</a></li>
+       <li><a routerLink="/js">JS</a></li>
+       <li><a routerLink="/angular">ANGULAR</a></li>
+       <li><a routerLink="/typescript">TYPESCRIPT</a></li>
+    </ul>
+  </div>
+</nav>
 
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
