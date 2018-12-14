@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase } from 'angularfire2/database';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +6,5 @@ import {Observable} from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  title = 'interview-questions';
-
-  js: any[];
-
-
-  constructor(db: AngularFireDatabase) {
-    db.list('/js')
-      .valueChanges()
-      .subscribe(res => {
-        console.log(res);
-        this.js = res;
-      });
-
-  }
-
-
 
 }
