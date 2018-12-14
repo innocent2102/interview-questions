@@ -20,4 +20,13 @@ export class JsCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    if (this.question.answer !== '' && this.question.title !== '') {
+      this.jsService.addQuestion(this.question);
+      this.question.title = '';
+      this.question.answer = '';
+    }
+  }
 }
+
+
