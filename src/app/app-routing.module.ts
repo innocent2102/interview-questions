@@ -6,6 +6,7 @@ import { HtmlComponent } from './components/html/html.component';
 import { TypescriptComponent } from './components/typescript/typescript.component';
 import { CssComponent } from './components/css/css.component';
 import { HomeComponent } from './components/home/home.component';
+import {JsCreateComponent} from './components/js/js-create/js-create.component';
 
 const routes: Routes = [
   {path: 'angular', component: AngularComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'html', component: HtmlComponent},
   {path: 'css', component: CssComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'add', component: JsCreateComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
