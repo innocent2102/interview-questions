@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JsService } from '../../services/js/js.service';
 import { Question } from '../../interfaces/question';
-
+import * as $ from 'jquery';
+declare var $: any;
 @Component({
   selector: 'app-js',
   templateUrl: './js.component.html',
@@ -12,10 +13,14 @@ export class JsComponent implements OnInit {
   questions: Question[];
   questionToEdit: Question;
   editState = false;
+  question: Question;
 
   constructor(private jsService: JsService) { }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
     this.getQuestions();
   }
 
@@ -25,8 +30,12 @@ export class JsComponent implements OnInit {
     });
   }
 
-  deleteQuestion(event, question) {
-    this.jsService.deleteQuestion(question);
+  currentQuestion(question: Question) {
+    this.question = question;
+  }
+
+  deleteQuestion() {
+    this.jsService.deleteQuestion(this.question);
   }
 
   editQuestion(event, question) {
