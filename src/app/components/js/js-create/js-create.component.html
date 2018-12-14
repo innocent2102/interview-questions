@@ -1,6 +1,9 @@
-<div class="card">
+<a (click)="toggleWindow()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+<div class="card" *ngIf="addWindowHidden">
   <div class="card-content">
-    <span class="card-title">Dodaj pytanie</span>
+    <div class="flex justify-content-space-between">
+      <span class="card-title">Dodaj pytanie</span><i (click)="toggleWindow()" class="fa fa-compress cursor-pointer"></i>
+    </div>
     <form (ngSubmit)="onSubmit()" class="col">
       <div class="row">
         <div class="input-field">
