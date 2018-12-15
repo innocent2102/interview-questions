@@ -15,7 +15,7 @@ export class QuestionComponent implements OnInit {
   questionToDelete: Question;
   newQuestion: Question = {title: '', answer: '', state: 0};
   editState = false;
-  colletionPath = 'js';
+  collectionPath = 'js';
   addWindowHidden = false;
 
   constructor(private jsService: QuestionService) {  }
@@ -38,7 +38,7 @@ export class QuestionComponent implements OnInit {
   }
 
   pathChange(path: string) {
-    this.colletionPath = path;
+    this.collectionPath = path;
     this.getQuestions();
   }
 
@@ -47,13 +47,13 @@ export class QuestionComponent implements OnInit {
   }
 
   getQuestions() {
-    this.jsService.getQuestions(this.colletionPath).subscribe((res: Question[]) => {
+    this.jsService.getQuestions(this.collectionPath).subscribe((res: Question[]) => {
       this.questions = res;
     });
   }
 
   deleteQuestion() {
-    this.jsService.deleteQuestion(this.questionToDelete, this.colletionPath);
+    this.jsService.deleteQuestion(this.questionToDelete, this.collectionPath);
     this.resetNewQuestionValues();
   }
 
@@ -71,13 +71,13 @@ export class QuestionComponent implements OnInit {
 
   updateQuestion(question: Question) {
     question.state = 0;
-    this.jsService.updateQuestion(question, this.colletionPath);
+    this.jsService.updateQuestion(question, this.collectionPath);
     this.editState = false;
   }
 
   addQuestion() {
     if (this.newQuestion.answer !== '' && this.newQuestion.title !== '') {
-      this.jsService.addQuestion(this.newQuestion, this.colletionPath);
+      this.jsService.addQuestion(this.newQuestion, this.collectionPath);
       this.resetNewQuestionValues();
     }
   }

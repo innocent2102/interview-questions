@@ -8,16 +8,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { QuestionComponent } from './components/question/question.component';
-import { TypescriptComponent } from './components/typescript/typescript.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    QuestionComponent,
-    TypescriptComponent
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
