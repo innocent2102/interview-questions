@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JsService } from '../../services/js/js.service';
 import { Question } from '../../interfaces/question';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
+
 declare var $: any;
 @Component({
   selector: 'app-js',
@@ -13,13 +16,21 @@ export class JsComponent implements OnInit {
   questionToEdit: Question;
   editState = false;
   question: Question;
+  path = 'js';
+  question: Question = {title: '', answer: '', state: 0};
+  addWindowHidden = false;
 
-  constructor(private jsService: JsService) { }
+  constructor(private jsService: JsService, private activatedRoute: ActivatedRoute, private router: Router) {  }
 
   ngOnInit() {
     this.modalOpenTrigger();
     this.getQuestions();
   }
+
+  // refresh() {
+  //   this.path = this.activatedRoute.params.value.type;
+  //   this.getQuestions();
+  // }
 
   modalOpenTrigger() {
     $(document).ready(function() {
@@ -28,9 +39,14 @@ export class JsComponent implements OnInit {
   }
 
   getQuestions() {
-    this.jsService.getQuestions().subscribe((res: Question[]) => {
+    this.jsService.getQuestions(this.path).subscribe((res: Question[]) => {
       this.questions = res;
     });
+  }
+
+  pathChange(path: string) {
+    this.path = path;
+    this.getQuestions();
   }
 
   setCurrentQuestion(question: Question) {
@@ -38,7 +54,8 @@ export class JsComponent implements OnInit {
   }
 
   deleteQuestion() {
-    this.jsService.deleteQuestion(this.question);
+    this.jsService.deleteQuestion(this.question, this.path);
+    this.resetQuestionValues();
   }
 
   editQuestion(event, question) {
@@ -55,8 +72,25 @@ export class JsComponent implements OnInit {
 
   updateQuestion(question: Question) {
     question.state = 0;
-    this.jsService.updateQuestion(question);
+    this.jsService.updateQuestion(question, this.path);
     this.editState = false;
   }
+
+  onSubmit() {
+    if (this.question.answer !== '' && this.question.title !== '') {
+      this.jsService.addQuestion(this.question, this.path);
+      this.resetQuestionValues();
+    }
+  }
+
+  resetQuestionValues() {
+    this.question.title = '';
+    this.question.answer = '';
+  }
+
+  toggleWindow() {
+    this.addWindowHidden = !this.addWindowHidden;
+  }
+
 
 }
