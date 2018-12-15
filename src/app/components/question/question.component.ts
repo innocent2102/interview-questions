@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { JsService } from '../../services/js/js.service';
+import { QuestionService } from '../../services/question/question.service';
 import { Question } from '../../interfaces/question';
 
 declare var $: any;
 @Component({
   selector: 'app-js',
-  templateUrl: './js.component.html',
-  styleUrls: ['./js.component.scss']
+  templateUrl: './question.component.html',
+  styleUrls: ['./question.component.scss']
 })
-export class JsComponent implements OnInit {
+export class QuestionComponent implements OnInit {
 
   questions: Question[];
   questionToEdit: Question;
   questionToDelete: Question;
   newQuestion: Question = {title: '', answer: '', state: 0};
   editState = false;
-  colletionOath = 'js';
+  colletionPath = 'js';
   addWindowHidden = false;
 
-  constructor(private jsService: JsService) {  }
+  constructor(private jsService: QuestionService) {  }
 
   ngOnInit() {
     this.modalOpenTrigger();
@@ -38,7 +38,7 @@ export class JsComponent implements OnInit {
   }
 
   pathChange(path: string) {
-    this.colletionOath = path;
+    this.colletionPath = path;
     this.getQuestions();
   }
 
@@ -47,13 +47,13 @@ export class JsComponent implements OnInit {
   }
 
   getQuestions() {
-    this.jsService.getQuestions(this.colletionOath).subscribe((res: Question[]) => {
+    this.jsService.getQuestions(this.colletionPath).subscribe((res: Question[]) => {
       this.questions = res;
     });
   }
 
   deleteQuestion() {
-    this.jsService.deleteQuestion(this.questionToDelete, this.colletionOath);
+    this.jsService.deleteQuestion(this.questionToDelete, this.colletionPath);
     this.resetNewQuestionValues();
   }
 
@@ -71,13 +71,13 @@ export class JsComponent implements OnInit {
 
   updateQuestion(question: Question) {
     question.state = 0;
-    this.jsService.updateQuestion(question, this.colletionOath);
+    this.jsService.updateQuestion(question, this.colletionPath);
     this.editState = false;
   }
 
   addQuestion() {
     if (this.newQuestion.answer !== '' && this.newQuestion.title !== '') {
-      this.jsService.addQuestion(this.newQuestion, this.colletionOath);
+      this.jsService.addQuestion(this.newQuestion, this.colletionPath);
       this.resetNewQuestionValues();
     }
   }
