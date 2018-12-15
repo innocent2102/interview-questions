@@ -11,6 +11,7 @@ export class JsCreateComponent implements OnInit {
 
   question: Question = {title: '', answer: '', state: 0};
   addWindowHidden = false;
+  path = 'angular';
 
   constructor(private jsService: JsService) { }
 
@@ -19,7 +20,7 @@ export class JsCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.question.answer !== '' && this.question.title !== '') {
-      this.jsService.addQuestion(this.question);
+      this.jsService.addQuestion(this.question, this.path);
       this.resetQuestionValues();
     }
   }

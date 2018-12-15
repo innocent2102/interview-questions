@@ -15,10 +15,11 @@ export class JsService {
   questionsDoc: AngularFirestoreDocument<Question>;
 
   constructor(public afs: AngularFirestore) {
-    this.questionCollection = this.afs.collection<Question>('js');
+    //this.questionCollection = this.afs.collection<Question>(path);
   }
 
-  getQuestions() {
+  getQuestions(path: string) {
+    this.questionCollection = this.afs.collection<Question>(path);
     this.questions = this.questionCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Question;
@@ -29,17 +30,18 @@ export class JsService {
     return this.questions;
   }
 
-  addQuestion(question: Question) {
+  addQuestion(question: Question, path: string) {
+    this.questionCollection = this.afs.collection<Question>(path);
     this.questionCollection.add(question);
   }
 
-  deleteQuestion(question: Question) {
-    this.questionsDoc = this.afs.doc(`js/${question.id}`);
+  deleteQuestion(question: Question, path: string) {
+    this.questionsDoc = this.afs.doc(`${path}/${question.id}`);
     this.questionsDoc.delete();
   }
 
-  updateQuestion(question: Question) {
-    this.questionsDoc = this.afs.doc(`js/${question.id}`);
+  updateQuestion(question: Question, path: string) {
+    this.questionsDoc = this.afs.doc(`${path}/${question.id}`);
     this.questionsDoc.update(question);
   }
 
