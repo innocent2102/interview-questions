@@ -8,15 +8,13 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class JsService {
+export class QuestionService {
 
   questionCollection: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
   questionsDoc: AngularFirestoreDocument<Question>;
 
-  constructor(public afs: AngularFirestore) {
-    //this.questionCollection = this.afs.collection<Question>(path);
-  }
+  constructor(public afs: AngularFirestore) {  }
 
   getQuestions(path: string) {
     this.questionCollection = this.afs.collection<Question>(path);
