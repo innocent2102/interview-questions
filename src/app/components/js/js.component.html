@@ -1,8 +1,7 @@
+<!-- Nav Bar -->
 <nav>
   <div class="nav-wrapper">
     <ul id="nav-mobile" class="right">
-      <!--<li><a (click)="refresh()" [routerLink]="['/question', 'angular']">Angular</a></li>-->
-      <!--<li><a (click)="refresh()" [routerLink]="['/question', 'js']">JS2</a></li>-->
       <li><a (click)="pathChange('angular')">Angular</a></li>
       <li><a (click)="pathChange('js')">JS2</a></li>
     </ul>
@@ -10,8 +9,6 @@
 </nav>
 
 <!-- Add Question Component -->
-<!--<app-js-create *ngIf="!editState"></app-js-create>-->
-
 <div *ngIf="!editState">
   <a (click)="toggleWindow()" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
   <div class="card" *ngIf="addWindowHidden">
@@ -19,13 +16,13 @@
       <div class="flex justify-content-space-between">
         <span class="card-title">Dodaj pytanie</span><i (click)="toggleWindow()" class="fa fa-compress cursor-pointer"></i>
       </div>
-      <form (ngSubmit)="onSubmit()" class="col">
+      <form (ngSubmit)="addQuestion()" class="col">
         <div class="row">
           <div class="input-field">
-            <input type="text" placeholder="Dodaj tytuł" [(ngModel)]="question.title" name="title">
+            <input type="text" placeholder="Dodaj tytuł" [(ngModel)]="newQuestion.title" name="title">
           </div>
           <div class="input-field">
-            <textarea placeholder="Dodaj odpowiedź" [(ngModel)]="question.answer" name="answer" id="textarea2" class="materialize-textarea"></textarea>
+            <textarea placeholder="Dodaj odpowiedź" [(ngModel)]="newQuestion.answer" name="answer" id="textarea2" class="materialize-textarea"></textarea>
           </div>
           <input type="submit" value="Dodaj" class="btn">
         </div>
@@ -43,7 +40,7 @@
         <strong>{{question.title}}</strong>
         <div *ngIf="!editState">
           <i (click)="editQuestion($event, question)" class="material-icons edit-icon">edit</i>
-          <i href="#modal1" (click)="setCurrentQuestion(question)" class="material-icons delete-icon modal-trigger">delete</i>
+          <i href="#modal1" (click)="setQuestionToDelete(question)" class="material-icons delete-icon modal-trigger">delete</i>
         </div>
       </li>
       <li class="collection-item">{{question.answer}}</li>
