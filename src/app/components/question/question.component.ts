@@ -27,9 +27,8 @@ export class QuestionComponent implements OnInit {
     this.getQuestions();
   }
 
-  toggleAnswer(answer, showOrHideText) {
+  toggleAnswer(answer) {
     answer.hidden = !answer.hidden ;
-    //showOrHideText.innerHTML =  answer.hidden ? 'Pokaż odpowiedź' : 'Ukryj odpowiedź';
   }
 
   resetNewQuestionValues() {
