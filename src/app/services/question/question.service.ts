@@ -21,7 +21,6 @@ export class QuestionService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Question;
         const id = a.payload.doc.id;
-        console.log(data);
         return {id, ...data};
       }))
     );

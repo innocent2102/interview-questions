@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { QuestionService } from '../../services/question/question.service';
 import { Question } from '../../interfaces/question';
 
@@ -15,14 +15,21 @@ export class QuestionComponent implements OnInit {
   questionToDelete: Question;
   newQuestion: Question = {title: '', answer: '', state: 0};
   editState = false;
-  collectionPath = 'js';
+  collectionPath = 'JavaScript';
   addWindowHidden = false;
+  answerHidden: boolean;
 
   constructor(private jsService: QuestionService) {  }
 
   ngOnInit() {
+    this.answerHidden = true;
     this.modalOpenTrigger();
     this.getQuestions();
+  }
+
+  toggleAnswer(answer, showOrHideText) {
+    answer.hidden = !answer.hidden ;
+    //showOrHideText.innerHTML =  answer.hidden ? 'Pokaż odpowiedź' : 'Ukryj odpowiedź';
   }
 
   resetNewQuestionValues() {
