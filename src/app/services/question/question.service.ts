@@ -4,7 +4,6 @@ import { Question } from '../../interfaces/question';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,30 +15,31 @@ export class QuestionService {
 
   constructor(public afs: AngularFirestore) {  }
 
-  getQuestions(path: string) {
-    this.questionCollection = this.afs.collection<Question>(path);
+  getQuestions(collectionPath: string) {
+    this.questionCollection = this.afs.collection<Question>(collectionPath);
     this.questions = this.questionCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Question;
         const id = a.payload.doc.id;
+        console.log(data);
         return {id, ...data};
       }))
     );
     return this.questions;
   }
 
-  addQuestion(question: Question, path: string) {
-    this.questionCollection = this.afs.collection<Question>(path);
+  addQuestion(question: Question, collectionPath: string) {
+    this.questionCollection = this.afs.collection<Question>(collectionPath);
     this.questionCollection.add(question);
   }
 
-  deleteQuestion(question: Question, path: string) {
-    this.questionsDoc = this.afs.doc(`${path}/${question.id}`);
+  deleteQuestion(question: Question, collectionPath: string) {
+    this.questionsDoc = this.afs.doc(`${collectionPath}/${question.id}`);
     this.questionsDoc.delete();
   }
 
-  updateQuestion(question: Question, path: string) {
-    this.questionsDoc = this.afs.doc(`${path}/${question.id}`);
+  updateQuestion(question: Question, collectionPath: string) {
+    this.questionsDoc = this.afs.doc(`${collectionPath}/${question.id}`);
     this.questionsDoc.update(question);
   }
 
