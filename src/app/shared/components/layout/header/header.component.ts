@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   answerHidden: boolean;
   collectionPath = 'JavaScript';
   editState = false;
-  newQuestion: Question = {title: '', answer: '', state: 0};
+  newQuestion: Question = {title: '', answer: '', state: 0, type: 'js'};
   questionToDelete: Question;
   questionToEdit: Question;
   questions: Question[];

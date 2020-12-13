@@ -13,7 +13,7 @@ export class QuestionComponent implements OnInit {
   questions: Question[];
   questionToEdit: Question;
   questionToDelete: Question;
-  newQuestion: Question = {title: '', answer: '', state: 0};
+  newQuestion: Question = {title: '', answer: '', state: 0, type: 'HTML'};
   editState = false;
   collectionPath = 'JavaScript';
   addWindowHidden = false;
