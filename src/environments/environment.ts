@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyD4ZiHXO8vDjNjmo2-x3V9wwMGc0qbzW-4",
-    authDomain: "interview-questions-3b86a.firebaseapp.com",
-    databaseURL: "https://interview-questions-3b86a.firebaseio.com",
-    projectId: "interview-questions-3b86a",
-    storageBucket: "interview-questions-3b86a.appspot.com",
-    messagingSenderId: "825575009267"
+    apiKey: 'AIzaSyD4ZiHXO8vDjNjmo2-x3V9wwMGc0qbzW-4',
+    authDomain: 'interview-questions-3b86a.firebaseapp.com',
+    databaseURL: 'https://interview-questions-3b86a.firebaseio.com',
+    projectId: 'interview-questions-3b86a',
+    storageBucket: 'interview-questions-3b86a.appspot.com',
+    messagingSenderId: '825575009267'
   }
 };
 
