@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Question } from '../../interfaces/question';
-import { Observable } from 'rxjs';
+import { Question } from '../../../interfaces/question';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { QuestionType } from '../../models/question';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,21 @@ export class QuestionService {
   questionCollection: AngularFirestoreCollection<Question>;
   questions: Observable<Question[]>;
   questionsDoc: AngularFirestoreDocument<Question>;
+  questionTypeList: QuestionType[] = [
+    {id: 0, name: 'HTML'},
+    {id: 1, name: 'CSS'},
+    {id: 2, name: 'js'},
+    {id: 3, name: 'Angular'},
+    {id: 3, name: 'TypeScript'}
+  ];
 
   constructor(public afs: AngularFirestore) {  }
 
-  getQuestions(collectionPath: string) {
+  getQuestionTypeList(): Observable<QuestionType[]> {
+    return of(this.questionTypeList);
+  }
+
+  getQuestions(collectionPath: string): Observable<Question[]> {
     this.questionCollection = this.afs.collection<Question>(collectionPath);
     this.questions = this.questionCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
