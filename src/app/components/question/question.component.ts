@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { QuestionService } from '../../services/question/question.service';
+import { QuestionService } from '../../shared/services/question/question.service';
 import { Question } from '../../interfaces/question';
 
 declare var $: any;
